@@ -18,11 +18,11 @@ https://drive.google.com/drive/folders/1uN8ESV6-VKcCIFId24saWrz5G8AGFBRi?usp=sha
 
 ## 4.1 Performance Metrics
 
-In this project, a YOLOv8n object detection model was used to detect players in sports videos. The model was fine-tuned using a custom dataset created by extracting frames from 9 sports video clips. A total of 259 images were generated and split into training (80%) and validation (20%) sets.
+In this project, a YOLOv8n object detection model was used to detect players in sports videos. The dataset was created by extracting frames from 9 sports video clips. A total of 259 images were generated and split into training (80%) and validation (20%) sets.
 
 The model was trained for 3 epochs using an image size of 640×640.
 
-After detection, ByteTrack was used to assign consistent IDs to detected players for tracking across frames.
+After detection, ByteTrack was applied to assign consistent IDs to players across frames for tracking purposes.
 
 ## 4.1 Model Overview
 
@@ -33,126 +33,146 @@ Validation Results
 
 | Metric        | Value      |
 | ------------- | ---------- |
-| Precision     | **0.9626** |
-| Recall        | **0.3919** |
-| mAP@50        | **0.7474** |
-| mAP@50–95     | **0.5582** |
-| Fitness Score | **0.5582** |
+| Precision     | **0.9466** |
+| Recall        | **0.4502** |
+| mAP@50        | **0.7589** |
+| mAP@50–95     | **0.5438** |
+| Fitness Score | **0.5438** |
+
 
 
 ## 4.3 Explanation of Metrics
 
-## Precision (96.26%)
+## Precision (94.66%)
 
-Precision measures how many detected players were actually correct.
 
-A high precision value indicates:
+Precision measures how many detected players were correctly identified.
+
+A precision value of 94.66% indicates:
 
 Very few false positives
 
 The model rarely detects non-player objects as players
 
-Strong classification reliability
+Strong reliability in predictions
 
-This is a strong result and shows the model is confident in its predictions.
+This demonstrates that the model makes accurate detections when it predicts a player.
 
-## Recall (39.19%)
+## Recall (45.02%)
 
-Recall measures how many actual players were detected by the model.
+Recall measures how many actual players were successfully detected.
 
-The recall value is relatively low, which indicates:
+A recall of 45.02% indicates:
 
-Some players were missed
+  Some players were missed
+  
+  Detection performance is moderate
+  
+  The model does not detect all players present in each frame
 
-The model does not detect all players present in frames
+This can be explained by:
 
-This is expected because:
-
-The dataset is small
-
-Sports scenes include motion blur and occlusion
-
-Players often overlap or move fast
-
-
-## mAP@50 (74.74%)
-
-Mean Average Precision at IoU 0.5 shows overall detection performance.
-
-A value of 0.74 indicates:
-
-Good localization performance
-
-Bounding boxes are reasonably accurate
+  Small dataset size
+  
+  Fast player movements
+  
+  Motion blur
+  
+  Player occlusion and overlapping
 
 
-## mAP@50–95 (55.82%)
+## mAP@50 (75.89%)
 
-This metric evaluates detection performance at stricter IoU thresholds.
+Mean Average Precision at IoU 0.5 evaluates bounding box quality.
 
-Since this is above 0.55, it indicates:
+A value of 0.7589 indicates:
 
-Acceptable performance for a lightweight model
+  Good localization performance
+  
+  Bounding boxes align reasonably well with ground truth
+  
+  Strong detection capability for a lightweight model
 
-Bounding box alignment could still be improved
+
+## mAP@50–95 (54.38%)
+
+This metric evaluates detection under stricter overlap thresholds.
+
+A value of 0.5438 suggests:
+
+  Moderate robustness
+  
+  Bounding box precision could be improved
+  
+  The model struggles slightly under stricter evaluation conditions
 
 ## 4.4 Training Behavior and Loss Analysis
 
 During training:
 
-Box loss decreased gradually
+Box loss decreased progressively
 
 Classification loss stabilized
 
 Validation performance improved over epochs
 
-Since training was limited to only 3 epochs, the model likely did not fully converge. Increasing epochs may further improve recall and mAP scores.
+Since training was limited to only 3 epochs, the model likely did not fully converge.
+
+Training for more epochs would likely:
+
+  Improve recall
+  
+  Improve mAP@50–95
+  
+  Improve generalization performance
 
 
 ## 4.5 Model Speed and Efficiency
 
-The model speed measurements were:
+Speed metrics from validation:
 
-Preprocessing: ~1.36 ms
-
-Inference: ~118.7 ms
-
-Postprocessing: ~5.49 ms
+  Preprocessing: ~1.34 ms
+  
+  Inference: ~119.7 ms
+  
+  Postprocessing: ~5.81 ms
 
 This indicates:
 
-The model can process frames relatively fast
-
-It is suitable for near real-time sports analysis
-
-Lightweight YOLOv8n is efficient for practical deployment
+  The model runs efficiently
+  
+  Suitable for near real-time sports analysis
+  
+  YOLOv8n provides good balance between speed and accuracy
 
 
 ## 4.6 Performance Comparison
 
-The system consists of two main components:
+The system includes two components:
 
-YOLOv8n – Player Detection
-
-ByteTrack – Player Tracking
+  1. YOLOv8n – Player Detection
+  
+  2. ByteTrack – Player Tracking
 
 Detection Performance
 
-High precision
-
-Moderate mAP
-
-Low recall
+  High precision
+  
+  Moderate mAP
+  
+  Moderate recall
+  
+  Fast inference
 
 Tracking Performance
 
-Maintained consistent player IDs across frames
+  Maintained consistent player IDs
+  
+  Reduced ID switching
+  
+  Enabled movement analysis across frames
 
-Reduced ID switching using ByteTrack
-
-Improved player movement analysis capability
-
-The combination of YOLO detection and ByteTrack tracking provides a complete player tracking pipeline.
+The integration of YOLO detection with ByteTrack tracking provides a complete player tracking pipeline.
 
 
 ## 4.7 Discussion on Model Performance
