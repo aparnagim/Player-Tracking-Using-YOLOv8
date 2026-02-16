@@ -6,8 +6,11 @@ The dataset used for this project consists of 8 short sports video clips (5–10
 
 The dataset is available here:
 
-https://drive.google.com/drive/folders/1uN8ESV6-VKcCIFId24saWrz5G8AGFBRi?usp=sharing
+https://drive.google.com/drive/folders/13WMPmVcT4VDoCdl1zW5f8z6ztVTJF0aY?usp=sharing
 
+Whole Google folder is available here:
+
+https://drive.google.com/drive/folders/1uN8ESV6-VKcCIFId24saWrz5G8AGFBRi?usp=sharing
 
 
 
